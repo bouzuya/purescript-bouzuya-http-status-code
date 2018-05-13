@@ -1,0 +1,45 @@
+{
+  "name": "purescript-bouzuya-http-status-code",
+  "description": "HTTP status code",
+  "version": "0.0.0",
+  "author": {
+    "email": "m@bouzuya.net",
+    "name": "bouzuya",
+    "url": "https://bouzuya.net/"
+  },
+  "bugs": {
+    "url": "https://github.com/bouzuya/purescript-bouzuya-http-status-code/issues"
+  },
+  "devDependencies": {
+    "bower": "^1.8.4",
+    "npm-run-all": "^4.1.2",
+    "pulp": "^12.2.0",
+    "purescript": "^0.11.7",
+    "rimraf": "^2.6.2"
+  },
+  "homepage": "https://github.com/bouzuya/purescript-bouzuya-http-status-code#readme",
+  "keywords": [],
+  "license": "MIT",
+  "main": "index.js",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bouzuya/purescript-bouzuya-http-status-code.git"
+  },
+  "scripts": {
+    "build": "pulp build --modules Bouzuya.HTTP.StatusCode",
+    "clean": "rimraf .pulp-cache generated-docs output",
+    "deps": "npm-run-all -p 'deps:*'",
+    "deps:build": "bower install --production",
+    "deps:test": "bower install",
+    "docs": "pulp docs",
+    "pulp:publish": "echo $GITHUB_TOKEN | pulp login && echo y | pulp publish --no-push",
+    "pulp:version": "pulp version",
+    "repl": "pulp repl",
+    "test": "pulp test",
+    "watch": "npm-run-all -p 'watch:*'",
+    "watch:build": "pulp --watch build --modules Bouzuya.HTTP.StatusCode",
+    "watch:docs": "pulp --watch docs",
+    "watch:test": "pulp --watch test"
+  }
+}
