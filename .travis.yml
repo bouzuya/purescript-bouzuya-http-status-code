@@ -3,5 +3,3 @@ node_js: node
 script:
   - npm run --silent build
   - npm run --silent test
-after_success:
-  - test $TRAVIS_TAG && npm run pulp:publish # require `GITHUB_TOKEN` in env
