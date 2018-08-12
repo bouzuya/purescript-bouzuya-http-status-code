@@ -12,7 +12,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "npm-run-all": "^4.1.2",
     "psc-package": "^0.3.2",
     "purescript": "^0.12.0",
     "rimraf": "^2.6.2"
