@@ -2,28 +2,16 @@ module Test.Main where
 
 import Bouzuya.HTTP.StatusCode (ResponseClass(..), StatusCode(..), getResponseClass, isClientError, isInformational, isRedirection, isServerError, isSuccessful, status100, status200, status201, status300, status400, status500)
 import Bouzuya.HTTP.StatusCode as StatusCode
-import Control.Bind (discard)
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.AVar (AVAR)
-import Control.Monad.Eff.Console (CONSOLE)
+import Effect (Effect)
 import Data.Maybe (Maybe(..))
 import Data.Show (show)
 import Data.Unit (Unit)
-import Prelude (($), (/=), (==))
+import Prelude (discard, ($), (/=), (==))
 import Test.Unit (suite, test)
 import Test.Unit.Assert as Assert
-import Test.Unit.Console (TESTOUTPUT)
 import Test.Unit.Main (runTest)
 
-main
-  :: forall e
-  . Eff
-      ( avar :: AVAR
-      , console :: CONSOLE
-      , testOutput :: TESTOUTPUT
-      | e
-      )
-      Unit
+main :: Effect Unit
 main = runTest do
   suite "StatusCode" do
     test "Eq" do
