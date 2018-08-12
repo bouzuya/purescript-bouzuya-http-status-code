@@ -10,6 +10,7 @@
   "bugs": {
     "url": "https://github.com/bouzuya/purescript-bouzuya-http-status-code/issues"
   },
+  "dependencies": {},
   "devDependencies": {
     "npm-run-all": "^4.1.2",
     "psc-package": "^0.3.2",
@@ -28,12 +29,12 @@
   "scripts": {
     "build": "pulp build --modules Bouzuya.HTTP.StatusCode",
     "clean": "rimraf .pulp-cache generated-docs output",
-    "deps": "npm-run-all -p 'deps:*'",
-    "deps:build": "bower install --production",
-    "deps:test": "bower install",
     "docs": "pulp docs",
+    "postinstall": "psc-package install",
+    "psc-package": "psc-package",
     "pulp:publish": "echo $GITHUB_TOKEN | pulp login && echo y | pulp publish --no-push",
     "pulp:version": "pulp version",
+    "purs": "purs",
     "repl": "pulp repl",
     "test": "pulp test",
     "watch": "npm-run-all -p 'watch:*'",
