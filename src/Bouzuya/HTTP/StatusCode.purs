@@ -83,12 +83,10 @@ module Bouzuya.HTTP.StatusCode
   , status511
   ) where
 
-import Data.Boolean (otherwise)
-import Data.Eq (class Eq, (==))
-import Data.HeytingAlgebra ((&&))
-import Data.Maybe (Maybe(..))
-import Data.Ord ((<=))
-import Data.Show (class Show)
+import Prelude
+
+import Data.Maybe (Maybe)
+import Data.Maybe as Maybe
 
 type Code = Int
 type ReasonPhrase = String
@@ -96,6 +94,9 @@ data StatusCode = StatusCode Code ReasonPhrase
 
 instance eqStatusCode :: Eq StatusCode where
   eq (StatusCode a _) (StatusCode b _) = a == b
+
+instance ordStatusCode :: Ord StatusCode where
+  compare (StatusCode a _) (StatusCode b _) = compare a b
 
 instance showStatusCode :: Show StatusCode where
   show (StatusCode _ s) = s
@@ -117,105 +118,105 @@ instance showResponseClass :: Show ResponseClass where
   show ServerError = "5xx (Server Error)"
 
 fromInt :: Int -> Maybe StatusCode
-fromInt 100 = Just status100
-fromInt 101 = Just status101
-fromInt 102 = Just status102
-fromInt 103 = Just status103
-fromInt 200 = Just status200
-fromInt 201 = Just status201
-fromInt 202 = Just status202
-fromInt 203 = Just status203
-fromInt 204 = Just status204
-fromInt 205 = Just status205
-fromInt 206 = Just status206
-fromInt 207 = Just status207
-fromInt 208 = Just status208
-fromInt 226 = Just status226
-fromInt 300 = Just status300
-fromInt 301 = Just status301
-fromInt 302 = Just status302
-fromInt 303 = Just status303
-fromInt 304 = Just status304
-fromInt 305 = Just status305
-fromInt 306 = Just status306
-fromInt 307 = Just status307
-fromInt 308 = Just status308
-fromInt 400 = Just status400
-fromInt 401 = Just status401
-fromInt 402 = Just status402
-fromInt 403 = Just status403
-fromInt 404 = Just status404
-fromInt 405 = Just status405
-fromInt 406 = Just status406
-fromInt 407 = Just status407
-fromInt 408 = Just status408
-fromInt 409 = Just status409
-fromInt 410 = Just status410
-fromInt 411 = Just status411
-fromInt 412 = Just status412
-fromInt 413 = Just status413
-fromInt 414 = Just status414
-fromInt 415 = Just status415
-fromInt 416 = Just status416
-fromInt 417 = Just status417
-fromInt 421 = Just status421
-fromInt 422 = Just status422
-fromInt 423 = Just status423
-fromInt 424 = Just status424
-fromInt 425 = Just status425
-fromInt 426 = Just status426
-fromInt 427 = Just status427
-fromInt 428 = Just status428
-fromInt 429 = Just status429
-fromInt 430 = Just status430
-fromInt 431 = Just status431
-fromInt 451 = Just status451
-fromInt 500 = Just status500
-fromInt 501 = Just status501
-fromInt 502 = Just status502
-fromInt 503 = Just status503
-fromInt 504 = Just status504
-fromInt 505 = Just status505
-fromInt 506 = Just status506
-fromInt 507 = Just status507
-fromInt 508 = Just status508
-fromInt 509 = Just status509
-fromInt 510 = Just status510
-fromInt 511 = Just status511
-fromInt _ = Nothing -- Unassigned or invalid
+fromInt 100 = Maybe.Just status100
+fromInt 101 = Maybe.Just status101
+fromInt 102 = Maybe.Just status102
+fromInt 103 = Maybe.Just status103
+fromInt 200 = Maybe.Just status200
+fromInt 201 = Maybe.Just status201
+fromInt 202 = Maybe.Just status202
+fromInt 203 = Maybe.Just status203
+fromInt 204 = Maybe.Just status204
+fromInt 205 = Maybe.Just status205
+fromInt 206 = Maybe.Just status206
+fromInt 207 = Maybe.Just status207
+fromInt 208 = Maybe.Just status208
+fromInt 226 = Maybe.Just status226
+fromInt 300 = Maybe.Just status300
+fromInt 301 = Maybe.Just status301
+fromInt 302 = Maybe.Just status302
+fromInt 303 = Maybe.Just status303
+fromInt 304 = Maybe.Just status304
+fromInt 305 = Maybe.Just status305
+fromInt 306 = Maybe.Just status306
+fromInt 307 = Maybe.Just status307
+fromInt 308 = Maybe.Just status308
+fromInt 400 = Maybe.Just status400
+fromInt 401 = Maybe.Just status401
+fromInt 402 = Maybe.Just status402
+fromInt 403 = Maybe.Just status403
+fromInt 404 = Maybe.Just status404
+fromInt 405 = Maybe.Just status405
+fromInt 406 = Maybe.Just status406
+fromInt 407 = Maybe.Just status407
+fromInt 408 = Maybe.Just status408
+fromInt 409 = Maybe.Just status409
+fromInt 410 = Maybe.Just status410
+fromInt 411 = Maybe.Just status411
+fromInt 412 = Maybe.Just status412
+fromInt 413 = Maybe.Just status413
+fromInt 414 = Maybe.Just status414
+fromInt 415 = Maybe.Just status415
+fromInt 416 = Maybe.Just status416
+fromInt 417 = Maybe.Just status417
+fromInt 421 = Maybe.Just status421
+fromInt 422 = Maybe.Just status422
+fromInt 423 = Maybe.Just status423
+fromInt 424 = Maybe.Just status424
+fromInt 425 = Maybe.Just status425
+fromInt 426 = Maybe.Just status426
+fromInt 427 = Maybe.Just status427
+fromInt 428 = Maybe.Just status428
+fromInt 429 = Maybe.Just status429
+fromInt 430 = Maybe.Just status430
+fromInt 431 = Maybe.Just status431
+fromInt 451 = Maybe.Just status451
+fromInt 500 = Maybe.Just status500
+fromInt 501 = Maybe.Just status501
+fromInt 502 = Maybe.Just status502
+fromInt 503 = Maybe.Just status503
+fromInt 504 = Maybe.Just status504
+fromInt 505 = Maybe.Just status505
+fromInt 506 = Maybe.Just status506
+fromInt 507 = Maybe.Just status507
+fromInt 508 = Maybe.Just status508
+fromInt 509 = Maybe.Just status509
+fromInt 510 = Maybe.Just status510
+fromInt 511 = Maybe.Just status511
+fromInt _ = Maybe.Nothing -- Unassigned or invalid
 
 getResponseClass :: StatusCode -> Maybe ResponseClass
 getResponseClass (StatusCode code _)
-  | 100 <= code && code <= 199 = Just Informational
-  | 200 <= code && code <= 299 = Just Successful
-  | 300 <= code && code <= 399 = Just Redirection
-  | 400 <= code && code <= 499 = Just ClientError
-  | 500 <= code && code <= 599 = Just ServerError
-  | otherwise = Nothing
+  | 100 <= code && code <= 199 = Maybe.Just Informational
+  | 200 <= code && code <= 299 = Maybe.Just Successful
+  | 300 <= code && code <= 399 = Maybe.Just Redirection
+  | 400 <= code && code <= 499 = Maybe.Just ClientError
+  | 500 <= code && code <= 599 = Maybe.Just ServerError
+  | otherwise = Maybe.Nothing
 
 isInformational :: StatusCode -> Boolean
 isInformational s = case getResponseClass s of
-  Just Informational -> true
+  Maybe.Just Informational -> true
   _ -> false
 
 isSuccessful :: StatusCode -> Boolean
 isSuccessful s = case getResponseClass s of
-  Just Successful -> true
+  Maybe.Just Successful -> true
   _ -> false
 
 isRedirection :: StatusCode -> Boolean
 isRedirection s = case getResponseClass s of
-  Just Redirection -> true
+  Maybe.Just Redirection -> true
   _ -> false
 
 isClientError :: StatusCode -> Boolean
 isClientError  s = case getResponseClass s of
-  Just ClientError -> true
+  Maybe.Just ClientError -> true
   _ -> false
 
 isServerError :: StatusCode -> Boolean
 isServerError s = case getResponseClass s of
-  Just ServerError -> true
+  Maybe.Just ServerError -> true
   _ -> false
 
 status100 :: StatusCode
