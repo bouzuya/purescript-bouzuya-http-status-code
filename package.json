@@ -12,9 +12,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "psc-package": "^0.3.2",
-    "purescript": "^0.12.0",
-    "rimraf": "^2.6.2"
+    "purescript": "^0.12.3",
+    "spago": "^0.7.5"
   },
   "homepage": "https://github.com/bouzuya/purescript-bouzuya-http-status-code#readme",
   "keywords": [],
@@ -26,12 +25,11 @@
     "url": "git+https://github.com/bouzuya/purescript-bouzuya-http-status-code.git"
   },
   "scripts": {
-    "build": "psc-package sources | xargs purs compile 'src/**/*.purs' 'test/**/*.purs'",
-    "clean": "rimraf generated-docs output",
-    "docs": "psc-package sources | xargs purs docs 'src/**/*.purs' --format html",
-    "postinstall": "psc-package install",
-    "psc-package": "psc-package",
+    "build": "spago build",
+    "docs": "spago docs",
+    "prepare": "npm run build",
     "purs": "purs",
-    "test": "node -e 'require(\"./output/Test.Main/index\").main()'"
+    "spago": "spago",
+    "test": "spago test"
   }
 }
